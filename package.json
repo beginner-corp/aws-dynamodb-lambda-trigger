@@ -1,0 +1,20 @@
+{
+  "name": "aws-dynamodb-lambda-trigger",
+  "version": "1.0.0",
+  "description": "clean dynamo triggers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "dynamodb",
+    "trigger",
+    "lambda"
+  ],
+  "author": "Brian LeRoux <b@brian.io>",
+  "license": "Apache2",
+  "dependencies": {
+    "async": "^1.5.2"
+  }
+}
