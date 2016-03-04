@@ -1,10 +1,10 @@
 {
   "name": "aws-dynamodb-lambda-trigger",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "clean dynamo triggers",
   "main": "index.js",
   "scripts": {
-    "test":"node test | tap-spec"
+    "test": "node test | tap-spec"
   },
   "keywords": [
     "aws",
