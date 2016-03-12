@@ -1,7 +1,7 @@
 var async = require('async')
 
 // createTrigger returns a trigger
-function createTrigger(type, event, context, handler) {
+function createTrigger(types, event, context, handler) {
 
   // dynamo triggers send batches of records so we're going to create a handler for each one
   var handlers = event.Records.map(function(record) {
@@ -10,7 +10,7 @@ function createTrigger(type, event, context, handler) {
     return function actualHandler(callback) {
       
       // if isInvoking we invoke the handler with the record
-      if (type === record.eventName) {
+      if (types.indexOf(record.eventName) > -1) {
         handler(record, callback)   
       }
       else {
@@ -31,7 +31,9 @@ function createTrigger(type, event, context, handler) {
 }
 
 module.exports = {
-  insert: createTrigger.bind({}, 'INSERT'),
-  modify: createTrigger.bind({}, 'MODIFY'),
-  delete: createTrigger.bind({}, 'DELETE')
+  save:   createTrigger.bind({}, ['INSERT', 'MODIFY']),
+  all:    createTrigger.bind({}, ['INSERT', 'MODIFY', 'DELETE']),
+  insert: createTrigger.bind({}, ['INSERT']),
+  modify: createTrigger.bind({}, ['MODIFY']),
+  delete: createTrigger.bind({}, ['DELETE'])
 }

@@ -13,18 +13,23 @@ exports.handler = function myLambdaTriggerForTableName(event, context) {
     console.log(record)
     callback()
   })
+}
+```
 
-  // register a handler for updates (modify, in dynamo streams parlance)
-  trigger.modify(event, context, function handleModify(record, callback) {
-    console.log(record)
-    callback()
-  })
+## api
 
-  // register a handler for delete
-  trigger.delete(event, context, function handleDelete(record, callback) {
-    console.log(record)
-    callback()
-  })
+- `trigger.insert(event, context, handler)` register a handler for `INSERT`
+- `trigger.modify(event, context, handler)` register a handler for `MODIFY`
+- `trigger.delete(event, context, handler)` register a handler for `DELETE`
+- `trigger.save(event, context, handler)` register a handler for `INSERT`, `MODIFY`
+- `trigger.insert(event, context, handler)` register a handler for `INSERT`, `MODIFY` and `DELETE`
 
+In all cases the `handler` is a function with the following signature:
+
+```javascript
+function handleSave(record, callback) {
+  // do something with record and then callback node-style
+  // if an err is passed to the callback it will be passed to context.fail
+  callback(null, record)
 }
 ```
