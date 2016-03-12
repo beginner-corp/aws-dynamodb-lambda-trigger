@@ -20,9 +20,9 @@ exports.handler = function myLambdaTriggerForTableName(event, context) {
 
 - `trigger.insert(event, context, handler)` register a handler for `INSERT`
 - `trigger.modify(event, context, handler)` register a handler for `MODIFY`
-- `trigger.delete(event, context, handler)` register a handler for `DELETE`
+- `trigger.remove(event, context, handler)` register a handler for `REMOVE`
 - `trigger.save(event, context, handler)` register a handler for `INSERT`, `MODIFY`
-- `trigger.insert(event, context, handler)` register a handler for `INSERT`, `MODIFY` and `DELETE`
+- `trigger.insert(event, context, handler)` register a handler for `INSERT`, `MODIFY` and `REMOVE`
 
 In all cases the `handler` is a function with the following signature:
 

@@ -32,8 +32,8 @@ function createTrigger(types, event, context, handler) {
 
 module.exports = {
   save:   createTrigger.bind({}, ['INSERT', 'MODIFY']),
-  all:    createTrigger.bind({}, ['INSERT', 'MODIFY', 'DELETE']),
+  all:    createTrigger.bind({}, ['INSERT', 'MODIFY', 'REMOVE']),
   insert: createTrigger.bind({}, ['INSERT']),
   modify: createTrigger.bind({}, ['MODIFY']),
-  delete: createTrigger.bind({}, ['DELETE'])
+  remove: createTrigger.bind({}, ['REMOVE'])
 }
