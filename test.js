@@ -31,12 +31,29 @@ test('can queue things', t=> {
   })
 })
 
+var mock = require('./mock.json')
+
 test('can return a lambda', t=> {
-  t.plan(1)
+  t.plan(2)
   function testHandler(event, callback) {
-    callback()
+    console.log('000 --- executing testHandler')
+    callback(null, event)
   }
-  var fn = lambda.insert(testHandler)
+  var fn = lambda.all(testHandler)
   t.ok(fn, 'returned a fn')
   console.log(fn)
+  var fakeEvent = {
+    eventName: 'MODIFY',
+    Records: [mock]
+  }
+  var fakeContext = {
+    succeed(thing) {
+      t.ok(thing, 'got a thing from insert')
+      console.log('success called', thing)
+    }, 
+    fail(thing) {
+      console.log('fail called', thing)
+    }
+  }
+  fn(fakeEvent, fakeContext)
 })

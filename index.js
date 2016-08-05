@@ -21,6 +21,7 @@ function createTrigger(types, event, context, handler) {
 
   // executes the handlers in parallel
   async.parallel(handlers, function done(err, results) {
+    console.log('DONE ---- executed trigger', err, results)
     if (err) {
       context.fail(err)
     }
